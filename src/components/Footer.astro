@@ -8,7 +8,7 @@ const year = new Date().getFullYear();
   <div class="wrap">
     <p class="line">{site.name} · {site.location}</p>
     <p class="line links">
-      <a href={`mailto:${contact.email}`}>Email</a>
+      <span>{contact.email}</span>
       <span aria-hidden="true">·</span>
       <a href={contact.scholar} rel="me noopener">Google Scholar</a>
       <span aria-hidden="true">·</span>

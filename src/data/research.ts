@@ -15,11 +15,11 @@ export const current: Area[] = [
     id: 'rydberg',
     title: 'Rydberg-assisted quantum engineering of light',
     summary:
-      'Using strongly interacting Rydberg atoms as a non-linear medium to shape the quantum state of an optical field.',
+      'Using strongly interacting Rydberg atoms as a medium to engineer the quantum state of an optical field. A new direction, begun in 2026; the experiment is currently being built.',
     body: [
       'Atoms excited to Rydberg states interact strongly enough that a single excitation can suppress further excitation across an entire ensemble. The ensemble then responds to light collectively, as one object, rather than as a collection of independent scatterers.',
-      'That collective response makes an atomic medium optically non-linear at the level of individual photons — a regime ordinary materials do not reach. It is a resource for engineering the quantum state of light directly: preparing non-classical states, mediating effective interactions between photons, and building the photon–photon gates that quantum information processing with light requires.',
-      'I joined this work as a postdoctoral researcher in the Quantum Photonics team of Alexei Ourjoumtsev at the Collège de France in March 2026.',
+      'That collective response makes an atomic medium optically non-linear at the level of individual photons — a regime ordinary materials do not reach. It is a route to engineering the quantum state of light directly: preparing non-classical states, mediating effective interactions between photons, and realising the photon–photon gates that optical quantum information processing requires.',
+      'I joined the Quantum Photonics team of Alexei Ourjoumtsev at the Collège de France in March 2026 to work on this. It is a new direction for me and the work is at an early stage: we are building the experiment, and there are no publications from it yet.',
     ],
   },
 ];

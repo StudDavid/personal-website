@@ -96,12 +96,6 @@ export const publications: Publication[] = [
     venue: 'Scientific Reports 10, 9224',
     doi: 'https://doi.org/10.1038/s41598-020-65950-w',
   },
-  {
-    year: 2016,
-    authors: 'D. Theidel',
-    title: 'Goldener Quantensprung',
-    venue: 'Junge Wissenschaft 109, 50–55',
-  },
 ];
 
 export const selected = publications.filter((p) => p.selected);

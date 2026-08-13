@@ -32,14 +32,14 @@ Design tokens (colour, type, measure, spacing) are at the top of
 Content is real — sourced from ORCID (0000-0001-8486-8509), Google Scholar,
 Crossref, the previous WordPress site and your LaTeX CV. Remaining items:
 
-- **Contact email** is set to `theidel.david@gmail.com` (from the CV). Switch
-  it to a Collège de France address if you'd rather use an institutional one.
+- **Contact email** renders as `david.theidel at college-de-france.fr` and is
+  deliberately not a `mailto:` link, to make it less scrapeable.
 - **CV PDF** — drop it at `public/files/cv.pdf` and set `hasPdf = true` in
   `src/pages/cv.astro`.
 - **Check the research prose** in `src/data/research.ts` and `about.astro`. The
-  strong-field section is written from your papers; the Rydberg section is
-  written from a one-line CV entry and is the part most likely to need
-  correcting.
+  strong-field section is written from your papers; the Rydberg section
+  describes work in progress and should be revisited as the experiment
+  develops.
 
 Three entries in the LaTeX CV are out of date and were corrected against the
 published record:

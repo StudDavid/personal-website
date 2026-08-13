@@ -102,12 +102,6 @@ export const cv: Section[] = [
     label: 'Invited talks',
     entries: [
       {
-        when: '2026',
-        what: 'Quantum Optical Nature of High-Harmonic Generation in Semiconductors',
-        where:
-          '2nd International Conference on Quantum Engineered Sensing and Information Technology (QUEST), Télécom Paris',
-      },
-      {
         when: '2025',
         what:
           'Probing the Non-Classicality of High-Harmonic Generation in Semiconductors',
