@@ -12,21 +12,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 >
   <header class="page-head">
     <h1>Notes</h1>
-    <p class="meta">Coming soon.</p>
-    <p>
-      I occasionally publish technical notes and explanatory material here.
-    </p>
+    <p class="meta coming">Coming soon.</p>
+    <p>I occasionally publish technical notes and explanatory material here.</p>
   </header>
 </BaseLayout>
 
 <style>
   .page-head {
-    padding-top: 3.5rem;
-    max-width: 62ch;
+    max-width: var(--measure-prose);
   }
 
-  .meta {
-    margin-top: 1.25rem;
-    margin-bottom: 0.5rem;
+  .coming {
+    margin-top: 1.15rem;
+    margin-bottom: 0.45rem;
   }
 </style>

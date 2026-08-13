@@ -1,0 +1,133 @@
+---
+// Two-state toggle. With nothing stored the page follows prefers-color-scheme;
+// the first click stores an explicit choice that wins from then on.
+---
+
+<button
+  id="theme-toggle"
+  type="button"
+  class="theme-toggle"
+  aria-label="Switch colour theme"
+  title="Switch colour theme"
+>
+  <svg class="icon icon-moon" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+    <path
+      d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.6"
+      stroke-linejoin="round"
+    ></path>
+  </svg>
+  <svg class="icon icon-sun" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+    <circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6"></circle>
+    <path
+      d="M12 2.6v2.2M12 19.2v2.2M4.7 4.7l1.6 1.6M17.7 17.7l1.6 1.6M2.6 12h2.2M19.2 12h2.2M4.7 19.3l1.6-1.6M17.7 6.3l1.6-1.6"
+      stroke="currentColor"
+      stroke-width="1.6"
+      stroke-linecap="round"
+    ></path>
+  </svg>
+</button>
+
+<script>
+  const root = document.documentElement;
+  const button = document.getElementById('theme-toggle');
+
+  const systemDark = () =>
+    window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+  // What the visitor is actually looking at right now.
+  const effective = () =>
+    root.dataset.theme === 'dark' || root.dataset.theme === 'light'
+      ? root.dataset.theme
+      : systemDark()
+        ? 'dark'
+        : 'light';
+
+  const describe = () => {
+    const next = effective() === 'dark' ? 'light' : 'dark';
+    const label = `Switch to ${next} theme`;
+    button?.setAttribute('aria-label', label);
+    button?.setAttribute('title', label);
+  };
+
+  button?.addEventListener('click', () => {
+    const next = effective() === 'dark' ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try {
+      localStorage.setItem('theme', next);
+    } catch {
+      /* private browsing — the choice just won't persist */
+    }
+    describe();
+  });
+
+  // Track the system setting while no explicit choice is stored.
+  window
+    .matchMedia('(prefers-color-scheme: dark)')
+    .addEventListener('change', describe);
+
+  describe();
+</script>
+
+<style>
+  .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    margin-inline-start: 0.15rem;
+    background: none;
+    border: none;
+    border-radius: 3px;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: color 0.13s ease;
+  }
+
+  .theme-toggle:hover {
+    color: var(--text);
+  }
+
+  .icon {
+    display: block;
+  }
+
+  /* Icon shows the destination, not the current state. */
+  .icon-sun {
+    display: none;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :global(:root:not([data-theme='light'])) .icon-moon {
+      display: none;
+    }
+    :global(:root:not([data-theme='light'])) .icon-sun {
+      display: block;
+    }
+  }
+
+  :global(:root[data-theme='dark']) .icon-moon {
+    display: none;
+  }
+
+  :global(:root[data-theme='dark']) .icon-sun {
+    display: block;
+  }
+
+  :global(:root[data-theme='light']) .icon-moon {
+    display: block;
+  }
+
+  :global(:root[data-theme='light']) .icon-sun {
+    display: none;
+  }
+
+  /* Without JS the control cannot do anything, so don't offer it. */
+  :global(html.no-js) .theme-toggle {
+    display: none;
+  }
+</style>

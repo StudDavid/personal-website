@@ -36,5 +36,3 @@ export const previous: Area[] = [
     body: [],
   },
 ];
-
-export const areas: Area[] = [...current, ...previous];

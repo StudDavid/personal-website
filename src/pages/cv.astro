@@ -7,18 +7,18 @@ import { site } from '../data/site';
 import { url } from '../lib/url';
 
 const groups = byYear(publications);
-// Drop the download link if no PDF has been added yet.
-const hasPdf = false; // set to true once public/files/cv.pdf exists
+// Set to true once public/files/cv.pdf exists.
+const hasPdf = false;
 ---
 
 <BaseLayout
   title="CV"
-  description={`Curriculum vitae of ${site.name}, postdoctoral researcher in quantum optics at the Collège de France.`}
+  description={`Curriculum vitae of ${site.name}, researcher in quantum optics at the Collège de France.`}
 >
   <header class="page-head">
     <h1>Curriculum Vitae</h1>
     {hasPdf && (
-      <p><a href={url('/files/cv.pdf')}>Download CV (PDF)</a></p>
+      <p class="download"><a href={url('/files/cv.pdf')}>Download CV (PDF)</a></p>
     )}
   </header>
 
@@ -28,7 +28,7 @@ const hasPdf = false; // set to true once public/files/cv.pdf exists
       <dl class="entries">
         {section.entries.map((entry) => (
           <div class="entry">
-            <dt class="when">{entry.when}</dt>
+            <dt class="when tnum">{entry.when}</dt>
             <dd class="what">
               <span class="what-line">{entry.what}</span>
               {entry.where && <span class="where">{entry.where}</span>}
@@ -47,7 +47,7 @@ const hasPdf = false; // set to true once public/files/cv.pdf exists
     ) : (
       groups.map((group) => (
         <div class="year-group">
-          <p class="year">{group.year}</p>
+          <p class="year tnum">{group.year}</p>
           {group.items.map((pub) => <Publication pub={pub} />)}
         </div>
       ))
@@ -56,13 +56,11 @@ const hasPdf = false; // set to true once public/files/cv.pdf exists
 </BaseLayout>
 
 <style>
-  .page-head {
-    padding-top: 3.5rem;
-  }
 
-  .page-head p {
-    margin-top: 1rem;
-    font-size: 0.925rem;
+  .download {
+    margin-top: 0.9rem;
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
   }
 
   .entries {
@@ -71,9 +69,9 @@ const hasPdf = false; // set to true once public/files/cv.pdf exists
 
   .entry {
     display: grid;
-    grid-template-columns: 8.5rem 1fr;
-    gap: 0 1.5rem;
-    margin-bottom: 1.5rem;
+    grid-template-columns: 7.5rem 1fr;
+    gap: 0 1.75rem;
+    margin-bottom: 1.4rem;
   }
 
   .entry:last-child {
@@ -82,46 +80,55 @@ const hasPdf = false; // set to true once public/files/cv.pdf exists
 
   .when {
     margin: 0;
-    font-size: 0.875rem;
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
     color: var(--text-muted);
-    font-variant-numeric: tabular-nums;
-    padding-top: 0.15rem;
+    padding-top: 0.28rem;
   }
 
   .what {
     margin: 0;
     display: flex;
     flex-direction: column;
+    max-width: var(--measure-prose);
   }
 
   .what-line {
-    font-weight: 600;
+    font-weight: 650;
   }
 
-  .where,
+  .where {
+    color: var(--text-muted);
+  }
+
   .detail {
     color: var(--text-muted);
     font-size: 0.95rem;
+    margin-top: 0.15rem;
   }
 
   .year-group {
-    margin-bottom: 2rem;
+    margin-bottom: 1.85rem;
+  }
+
+  .year-group:last-of-type {
+    margin-bottom: 0;
   }
 
   .year {
-    margin: 0 0 0.75rem;
-    font-size: 0.8rem;
-    font-weight: 600;
+    font-family: var(--font-sans);
+    margin: 0 0 0.7rem;
+    font-size: 0.75rem;
+    font-weight: 650;
     letter-spacing: 0.1em;
     color: var(--text-muted);
-    font-variant-numeric: tabular-nums;
   }
 
-  /* Stack the date above the entry on narrow screens. */
+  /* Stack the date above the entry when the column would crowd the text. */
   @media (max-width: 34rem) {
     .entry {
       grid-template-columns: 1fr;
-      gap: 0.15rem;
+      gap: 0.1rem;
     }
 
     .when {

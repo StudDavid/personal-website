@@ -25,7 +25,19 @@ so you rarely need to touch `.astro` files to update the site.
 | `src/data/cv.ts` | CV sections and entries |
 
 Design tokens (colour, type, measure, spacing) are at the top of
-`src/styles/global.css`.
+`src/styles/global.css`. Light is the base palette; dark redefines only the
+tokens that change, in two places — a `prefers-color-scheme` block for
+visitors who haven't chosen, and a `[data-theme="dark"]` block for those who
+have. Edit both when changing a colour.
+
+The theme toggle stores its choice in `localStorage` under `theme`. An inline
+script in `BaseLayout.astro` applies it before first paint, so there is no
+flash; without JavaScript the page follows the system setting and the toggle
+hides itself.
+
+The email address is never written into the markup. `MailLink.astro` encodes
+it and spells it out as a fallback; a small script turns it into a real
+`mailto:` link at runtime.
 
 ## Before launch
 

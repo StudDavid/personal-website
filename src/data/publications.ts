@@ -8,8 +8,6 @@ export type Publication = {
   venue: string;
   doi?: string;
   arxiv?: string;
-  /** Set for work that is not yet in a journal. */
-  preprint?: boolean;
   selected?: boolean;
 };
 
@@ -39,7 +37,6 @@ export const publications: Publication[] = [
       'Sub-Poissonian statistics and quantum non-Gaussianity from high-harmonic generation',
     venue: 'Preprint',
     arxiv: 'https://arxiv.org/abs/2602.10882',
-    preprint: true,
     selected: true,
   },
   {
@@ -60,7 +57,6 @@ export const publications: Publication[] = [
     title: 'Incoherent diffraction imaging with a pseudo-thermal light source',
     venue: 'Preprint',
     arxiv: 'https://arxiv.org/abs/2501.05417',
-    preprint: true,
   },
   {
     year: 2024,

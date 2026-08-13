@@ -9,8 +9,8 @@ const { pub } = Astro.props;
 ---
 
 <article class="pub">
-  <p class="authors">{pub.authors}</p>
   <h3 class="title">{pub.title}</h3>
+  <p class="authors">{pub.authors}</p>
   <p class="venue">{pub.venue}</p>
   {(pub.doi || pub.arxiv) && (
     <p class="links">
@@ -22,34 +22,37 @@ const { pub } = Astro.props;
 
 <style>
   .pub {
-    margin-bottom: 2rem;
+    margin-bottom: 1.85rem;
+    max-width: var(--measure-prose);
   }
 
   .pub:last-child {
     margin-bottom: 0;
   }
 
-  .authors {
-    margin: 0 0 0.2rem;
-    font-size: 0.975rem;
-    color: var(--text-muted);
+  .title {
+    margin: 0 0 0.25rem;
+    line-height: 1.35;
   }
 
-  .title {
-    margin: 0 0 0.2rem;
-    font-weight: 600;
+  .authors {
+    margin: 0 0 0.1rem;
+    font-size: 0.95rem;
+    color: var(--text-muted);
   }
 
   .venue {
     margin: 0;
-    font-size: 0.975rem;
+    font-size: 0.95rem;
+    font-style: italic;
     color: var(--text-muted);
   }
 
   .links {
     display: flex;
-    gap: 1rem;
+    gap: 1.1rem;
     margin: 0.5rem 0 0;
-    font-size: 0.9rem;
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
   }
 </style>

@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ResearchSection from '../components/ResearchSection.astro';
 import Publication from '../components/Publication.astro';
+import MailLink from '../components/MailLink.astro';
 import { site, contact } from '../data/site';
 import { current, previous } from '../data/research';
 import { selected, byYear } from '../data/publications';
@@ -17,9 +18,8 @@ const selectedByYear = byYear(selected);
     <p class="affiliation">{site.affiliation}</p>
     <p class="lead statement">
       I study quantum optical phenomena in strongly driven and strongly
-      interacting systems.<br />
-      My doctoral work focused on ultrafast optics and quantum optics with
-      high-harmonic generation in semiconductors.<br />
+      interacting systems. My doctoral work focused on ultrafast optics and
+      quantum optics with high-harmonic generation in semiconductors.
       Currently, I work on photonic gates, Rydberg atoms, collective
       light–matter interaction, and non-classical light.
     </p>
@@ -27,43 +27,50 @@ const selectedByYear = byYear(selected);
 
   <section class="section">
     <h2 class="section-label">Research</h2>
-    {[...current, ...previous].map((area) => <ResearchSection area={area} />)}
-    <a class="more" href={url('/research/')}>→ Research</a>
+
+    <div class="group">
+      <p class="sub-label">Current research</p>
+      {current.map((area) => <ResearchSection area={area} />)}
+    </div>
+
+    <div class="group">
+      <p class="sub-label">Previous research</p>
+      {previous.map((area) => <ResearchSection area={area} />)}
+    </div>
+
+    <a class="more" href={url('/research/')}>All research →</a>
   </section>
 
   <section class="section">
     <h2 class="section-label">Selected publications</h2>
     {selectedByYear.length === 0 ? (
-      <p class="meta">
-        {/* Shown until publications.ts is filled in. */}
-        Publication list in preparation.
-      </p>
+      <p class="meta">Publication list in preparation.</p>
     ) : (
       selectedByYear.map((group) => (
         <div class="year-group">
-          <p class="year">{group.year}</p>
+          <p class="year tnum">{group.year}</p>
           {group.items.map((pub) => <Publication pub={pub} />)}
         </div>
       ))
     )}
-    <a class="more" href={url('/publications/')}>→ All publications</a>
+    <a class="more" href={url('/publications/')}>All publications →</a>
   </section>
 
   <section class="section">
     <h2 class="section-label">Currently</h2>
-    <p>
+    <p class="prose">
       Since March 2026 I have been a postdoctoral researcher at the Collège de
       France in Paris. As a member of the JEIP Quantum Photonics team of
       Alexei Ourjoumtsev, I work on Rydberg-assisted quantum engineering of
       light.
     </p>
-    <a class="more" href={url('/cv/')}>→ CV</a>
+    <a class="more" href={url('/cv/')}>Curriculum vitae →</a>
   </section>
 
   <section class="section">
     <h2 class="section-label">Contact</h2>
     <p class="contact-links">
-      <span>{contact.email}</span>
+      <MailLink />
       <span aria-hidden="true">·</span>
       <a href={contact.scholar} rel="me noopener">Google Scholar</a>
       <span aria-hidden="true">·</span>
@@ -74,40 +81,50 @@ const selectedByYear = byYear(selected);
 
 <style>
   .identity {
-    padding-top: 4rem;
+    padding-top: clamp(2.75rem, 2rem + 2.5vw, 4rem);
   }
 
   .role {
-    margin: 1rem 0 0;
-    font-size: 1.05rem;
+    margin: 0.9rem 0 0;
+    font-size: 1.08rem;
   }
 
   .affiliation {
-    margin: 0.2rem 0 0;
+    margin: 0.15rem 0 0;
     color: var(--text-muted);
   }
 
   .statement {
-    margin-top: 1.75rem;
-    max-width: 62ch;
+    margin-top: 1.6rem;
+  }
+
+  /* Current / Previous groupings inside the research section. */
+  .group + .group {
+    margin-top: var(--space-block);
+    padding-top: var(--space-block);
+    border-top: 1px solid var(--rule);
   }
 
   .year-group {
-    margin-bottom: 2rem;
+    margin-bottom: 1.85rem;
+  }
+
+  .year-group:last-of-type {
+    margin-bottom: 0;
   }
 
   .year {
-    margin: 0 0 0.75rem;
-    font-size: 0.8rem;
-    font-weight: 600;
+    font-family: var(--font-sans);
+    margin: 0 0 0.7rem;
+    font-size: 0.75rem;
+    font-weight: 650;
     letter-spacing: 0.1em;
     color: var(--text-muted);
-    font-variant-numeric: tabular-nums;
   }
 
   .contact-links {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.6rem;
+    gap: 0.55rem;
   }
 </style>

@@ -9,22 +9,22 @@ const groups = byYear(publications);
 
 <BaseLayout
   title="Publications"
-  description="Publications by David Theidel in quantum optics, Rydberg physics and ultrafast science."
+  description="Publications by David Theidel in quantum optics, ultrafast science and strong-field physics."
 >
   <header class="page-head">
     <h1>Publications</h1>
+    <p class="meta also">
+      Also on <a href={contact.scholar} rel="noopener">Google Scholar</a> and
+      <a href={contact.orcid} rel="noopener">ORCID</a>.
+    </p>
   </header>
 
   {groups.length === 0 ? (
-    <p class="meta empty">
-      {/* Replace by filling in src/data/publications.ts */}
-      The publication list is being compiled. In the meantime, see
-      <a href={contact.scholar} rel="noopener">Google Scholar</a>.
-    </p>
+    <p class="meta">The publication list is being compiled.</p>
   ) : (
     groups.map((group) => (
       <section class="year-group">
-        <h2 class="year">{group.year}</h2>
+        <h2 class="year tnum">{group.year}</h2>
         {group.items.map((pub) => <Publication pub={pub} />)}
       </section>
     ))
@@ -33,26 +33,30 @@ const groups = byYear(publications);
 
 <style>
   .page-head {
-    padding-top: 3.5rem;
-    margin-bottom: 3rem;
+    margin-bottom: 2.75rem;
   }
 
-  .empty {
-    margin-top: 2rem;
+  .also {
+    margin-top: 0.85rem;
+    font-size: 0.95rem;
   }
 
   .year-group {
-    margin-bottom: 3rem;
+    margin-bottom: 2.75rem;
+  }
+
+  .year-group:last-of-type {
+    margin-bottom: 0;
   }
 
   .year {
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    font-weight: 650;
+    letter-spacing: 0.15em;
     color: var(--text-muted);
-    font-variant-numeric: tabular-nums;
-    margin: 0 0 1rem;
-    padding-bottom: 0.6rem;
+    margin: 0 0 1.15rem;
+    padding-bottom: 0.55rem;
     border-bottom: 1px solid var(--rule);
   }
 </style>

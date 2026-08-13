@@ -1,0 +1,11 @@
+---
+import { contact } from '../data/site';
+
+// The address is not written into the markup in a harvestable form. Without
+// JS the visitor still reads it, just spelled out rather than linked; with JS
+// it becomes an ordinary mailto: link.
+const encoded = Buffer.from(contact.email, 'utf8').toString('base64');
+const spelled = contact.email.replace('@', ' at ');
+---
+
+<span class="mail" data-mail={encoded}>{spelled}</span>

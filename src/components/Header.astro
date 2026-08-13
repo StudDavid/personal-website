@@ -1,9 +1,11 @@
 ---
 import { site, nav } from '../data/site';
 import { url } from '../lib/url';
+import ThemeToggle from './ThemeToggle.astro';
 
 // Mark the current section so the nav shows where you are.
-const path = Astro.url.pathname.replace(import.meta.env.BASE_URL.replace(/\/$/, ''), '');
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const path = Astro.url.pathname.replace(base, '') || '/';
 const isCurrent = (href: string) => path.startsWith(href);
 ---
 
@@ -11,7 +13,6 @@ const isCurrent = (href: string) => path.startsWith(href);
   <div class="wrap header-inner">
     <a class="brand plain" href={url('/')}>{site.name}</a>
 
-    <!-- Desktop nav -->
     <nav class="nav-desktop" aria-label="Primary">
       {nav.map((item) => (
         <a
@@ -24,47 +25,59 @@ const isCurrent = (href: string) => path.startsWith(href);
       ))}
     </nav>
 
-    <!-- Mobile nav: <details> keeps it JS-free and animation-free -->
-    <details class="nav-mobile">
-      <summary aria-label="Menu">
-        <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true">
-          <path d="M3 6h16M3 11h16M3 16h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-        </svg>
-      </summary>
-      <nav aria-label="Primary, mobile">
-        {nav.map((item) => (
-          <a
-            class="plain"
-            href={url(item.href)}
-            aria-current={isCurrent(item.href) ? 'page' : undefined}
-          >
-            {item.label}
-          </a>
-        ))}
-      </nav>
-    </details>
+    <div class="controls">
+      <ThemeToggle />
+
+      <!-- <details> keeps the mobile menu keyboard-accessible with no JS. -->
+      <details class="nav-mobile">
+        <summary aria-label="Menu">
+          <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true">
+            <path
+              d="M3 6h14M3 10h14M3 14h14"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            ></path>
+          </svg>
+        </summary>
+        <nav aria-label="Primary, mobile">
+          {nav.map((item) => (
+            <a
+              class="plain"
+              href={url(item.href)}
+              aria-current={isCurrent(item.href) ? 'page' : undefined}
+            >
+              {item.label}
+            </a>
+          ))}
+        </nav>
+      </details>
+    </div>
   </div>
 </header>
 
 <style>
   .site-header {
-    border-bottom: 1px solid var(--rule);
+    position: sticky;
+    top: 0;
+    z-index: 20;
     background: var(--bg);
+    border-bottom: 1px solid var(--rule);
   }
 
   .header-inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 1.5rem;
-    padding-block: 1.15rem;
+    gap: 1.25rem;
+    padding-block: 0.9rem;
   }
 
   .brand {
     font-family: var(--font-heading);
-    font-weight: 600;
-    font-size: 1.0625rem;
-    letter-spacing: -0.01em;
+    font-weight: 650;
+    font-size: 1rem;
+    letter-spacing: -0.015em;
     color: var(--text);
     white-space: nowrap;
   }
@@ -75,14 +88,17 @@ const isCurrent = (href: string) => path.startsWith(href);
 
   .nav-desktop {
     display: flex;
-    gap: 1.6rem;
+    gap: 1.5rem;
+    margin-inline-start: auto;
   }
 
   .nav-link {
-    font-size: 0.9rem;
+    font-family: var(--font-heading);
+    font-size: 0.875rem;
     color: var(--text-muted);
     padding-bottom: 2px;
     border-bottom: 1px solid transparent;
+    white-space: nowrap;
   }
 
   .nav-link:hover {
@@ -94,7 +110,11 @@ const isCurrent = (href: string) => path.startsWith(href);
     border-bottom-color: var(--accent);
   }
 
-  /* --- mobile --- */
+  .controls {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
 
   .nav-mobile {
     display: none;
@@ -104,37 +124,41 @@ const isCurrent = (href: string) => path.startsWith(href);
   .nav-mobile summary {
     list-style: none;
     cursor: pointer;
-    color: var(--text);
+    color: var(--text-muted);
     display: flex;
     align-items: center;
-    padding: 0.25rem;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 3px;
   }
 
   .nav-mobile summary::-webkit-details-marker {
     display: none;
   }
 
-  .nav-mobile summary:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 3px;
-    border-radius: 2px;
+  .nav-mobile summary:hover {
+    color: var(--text);
   }
 
   .nav-mobile nav {
     position: absolute;
     right: 0;
-    top: calc(100% + 0.9rem);
-    z-index: 20;
+    top: calc(100% + 0.8rem);
+    z-index: 30;
     display: flex;
     flex-direction: column;
     gap: 0.9rem;
     min-width: 11rem;
     padding: 1.1rem 1.25rem;
-    background: var(--bg);
+    background: var(--bg-raised);
     border: 1px solid var(--rule);
+    border-radius: 3px;
+    box-shadow: 0 6px 20px -8px rgb(0 0 0 / 0.28);
   }
 
   .nav-mobile nav a {
+    font-family: var(--font-heading);
     color: var(--text-muted);
     font-size: 0.95rem;
   }
@@ -143,7 +167,7 @@ const isCurrent = (href: string) => path.startsWith(href);
     color: var(--text);
   }
 
-  @media (max-width: 34rem) {
+  @media (max-width: 40rem) {
     .nav-desktop {
       display: none;
     }

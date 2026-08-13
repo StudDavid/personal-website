@@ -10,9 +10,9 @@ export const site = {
 };
 
 export const contact = {
-  // Written out rather than linked, deliberately: a plain mailto: is the
-  // easiest thing on the page for an address harvester to scrape.
-  email: 'david.theidel at college-de-france.fr',
+  // Never rendered raw — MailLink.astro encodes it and spells it out for
+  // the no-JS fallback, so the plain address never appears in the markup.
+  email: 'david.theidel@college-de-france.fr',
   scholar: 'https://scholar.google.com/citations?user=iEgUE1UAAAAJ&hl=en',
   orcid: 'https://orcid.org/0000-0001-8486-8509',
   linkedin: 'https://www.linkedin.com/in/david-theidel-6532861aa/',

@@ -12,28 +12,55 @@ interface Props {
 
 const { title, description = site.description } = Astro.props;
 
-// "Research — David Theidel" on subpages, bare name on the homepage.
-const pageTitle = title ? `${title} — ${site.name}` : `${site.name} — ${site.role}`;
-const canonical = new URL(Astro.url.pathname, Astro.site).href;
+// "Research — David Theidel" on subpages, name and role on the homepage.
+const pageTitle = title
+  ? `${title} — ${site.name}`
+  : `${site.name} — ${site.role}`;
+
+// Canonical always points at the production domain, never the Pages URL.
+const canonical = new URL(Astro.url.pathname, 'https://theidel.com').href;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="no-js">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Resolve the theme before first paint, so there is no flash. -->
+    <script is:inline>
+      (function () {
+        var el = document.documentElement;
+        el.classList.remove('no-js');
+        try {
+          var stored = localStorage.getItem('theme');
+          if (stored === 'light' || stored === 'dark') el.dataset.theme = stored;
+        } catch (e) {
+          /* storage unavailable — fall back to prefers-color-scheme */
+        }
+      })();
+    </script>
+
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href={url('/favicon.svg')} />
     <link rel="sitemap" href={url('/sitemap-index.xml')} />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#fdfcfa" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#191817" media="(prefers-color-scheme: dark)" />
 
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content="profile" />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content="en_GB" />
     <meta property="og:site_name" content={site.name} />
+    <meta property="profile:first_name" content="David" />
+    <meta property="profile:last_name" content="Theidel" />
     <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
     <meta name="author" content={site.name} />
   </head>
 
@@ -48,5 +75,18 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
       </main>
       <Footer />
     </div>
+
+    <script>
+      // Turn spelled-out addresses into real mailto: links.
+      document.querySelectorAll('span.mail[data-mail]').forEach((el) => {
+        const encoded = (el as HTMLElement).dataset.mail;
+        if (!encoded) return;
+        const address = atob(encoded);
+        const link = document.createElement('a');
+        link.href = `mailto:${address}`;
+        link.textContent = address;
+        el.replaceWith(link);
+      });
+    </script>
   </body>
 </html>
