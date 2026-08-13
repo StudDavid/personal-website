@@ -40,7 +40,7 @@ export const previous: Area[] = [
     summary:
       'Photon statistics and non-classical correlations of the light emitted in high-harmonic generation from solids.',
     body: [
-      'High-harmonic generation is a frequency up-conversion process occurring in a strong laser field, producing coherent bursts of broadband, extremely short radiation. My doctoral work reported experimental evidence that this emission is non-classical in several semiconductors, measuring two-mode squeezing in the harmonic radiation and a violation of the Cauchy-Schwarz inequality that tests multipartite entanglement directly. A later Schmidt decomposition of a tripartite harmonic set showed an almost single-mode structure for each harmonic, in a source that operates at room temperature with standard semiconductors and a commercial fibre laser.',
+      'High-harmonic generation is a frequency up-conversion process occurring in a strong laser field, producing coherent bursts of broadband, extremely short radiation. My doctoral work reported experimental evidence that this emission is non-classical in several semiconductors, measuring two-mode squeezing in the harmonic radiation and certifying non-classical correlations between the harmonic modes. A later Schmidt decomposition of a tripartite harmonic set showed an almost single-mode structure for each harmonic, in a source that operates at room temperature with standard semiconductors and a commercial fibre laser.',
     ],
   },
 ];
