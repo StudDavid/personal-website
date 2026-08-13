@@ -15,7 +15,13 @@ const { area, index, full = false } = Astro.props;
 <section class="area" id={area.id}>
   {index !== undefined && <p class="ordinal">{String(index).padStart(2, '0')}</p>}
   <h3 class="title">{area.title}</h3>
-  {full ? area.body.map((p) => <p>{p}</p>) : <p class="summary">{area.summary}</p>}
+  <p class="summary">{area.summary}</p>
+  {full &&
+    (area.body.length > 0 ? (
+      area.body.map((p) => <p>{p}</p>)
+    ) : (
+      <p class="pending">Full description in preparation.</p>
+    ))}
   <slot />
 </section>
 
@@ -47,6 +53,14 @@ const { area, index, full = false } = Astro.props;
 
   .summary {
     color: var(--text-muted);
+  }
+
+  .area :global(p:last-child) {
     margin-bottom: 0;
+  }
+
+  .pending {
+    color: var(--text-muted);
+    font-style: italic;
   }
 </style>

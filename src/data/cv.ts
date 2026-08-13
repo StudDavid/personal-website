@@ -204,22 +204,6 @@ export const cv: Section[] = [
     ],
   },
   {
-    label: 'Teaching',
-    entries: [
-      {
-        when: '2022–2025',
-        what: 'Co-supervision of two M2 research projects',
-        where: 'École polytechnique',
-      },
-      {
-        when: '2019',
-        what: 'Teaching assistant',
-        where: 'Faculty of Mathematics and Physics, Leibniz University Hannover',
-        detail: 'Undergraduate physics laboratory; introductory mathematics.',
-      },
-    ],
-  },
-  {
     label: 'Service and outreach',
     entries: [
       {
@@ -244,25 +228,6 @@ export const cv: Section[] = [
         when: '2018–2020',
         what: 'Student representative',
         where: 'Council of the QUEST Leibniz Research School',
-      },
-    ],
-  },
-  {
-    label: 'Technical skills',
-    entries: [
-      {
-        when: 'Experiment',
-        what:
-          'Single-photon detection (SPADs, cooled fast PMTs) and time-to-digital conversion for photon-counting correlation measurements; optical setups from the far-infrared to the soft X-ray; ultrafast laser systems (Ti:sapphire, OPCPA, Yb fibre); pulse characterisation; vacuum systems.',
-      },
-      {
-        when: 'Computation',
-        what:
-          'Python, including experiment automation and data analysis; quantum-state modelling in QuTiP with multi-parameter optimisation against measured observables; Monte-Carlo and finite-difference simulation; TensorFlow; Mathematica; Git; LaTeX.',
-      },
-      {
-        when: 'Languages',
-        what: 'German (native), English (fluent), French (conversational).',
       },
     ],
   },
