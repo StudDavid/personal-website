@@ -1,0 +1,214 @@
+/* ---------------------------------------------------------------
+   Design tokens
+   --------------------------------------------------------------- */
+
+:root {
+  /* Colour: warm white, near-black, muted gray, one restrained accent. */
+  --bg: #fdfcfa;
+  --bg-subtle: #f6f4f0;
+  --text: #1a1a1a;
+  --text-muted: #6b6b6b;
+  --rule: #e2e0db;
+  --accent: #1f3a5f; /* dark academic blue */
+  --accent-hover: #142942;
+
+  /* Type. Swap --font-body to --font-serif for a more scholarly feel. */
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter,
+    'IBM Plex Sans', Roboto, Helvetica, Arial, sans-serif;
+  --font-serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+  --font-body: var(--font-sans);
+  --font-heading: var(--font-sans);
+
+  /* Layout */
+  --measure: 820px;
+  --gutter: 1.5rem;
+
+  /* Vertical rhythm */
+  --space-section: 4.5rem;
+  --space-block: 2.25rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16161a;
+    --bg-subtle: #1e1e23;
+    --text: #ececea;
+    --text-muted: #9a9a96;
+    --rule: #32323a;
+    --accent: #9db8dc;
+    --accent-hover: #c3d5ee;
+  }
+}
+
+/* ---------------------------------------------------------------
+   Reset / base
+   --------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  /* Responsive body size without media queries. */
+  font-size: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.wrap {
+  width: 100%;
+  max-width: var(--measure);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* ---------------------------------------------------------------
+   Typography
+   --------------------------------------------------------------- */
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(1.9rem, 1.55rem + 1.6vw, 2.6rem);
+}
+
+h2 {
+  font-size: clamp(1.25rem, 1.15rem + 0.45vw, 1.45rem);
+}
+
+h3 {
+  font-size: 1.075rem;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+
+p {
+  margin: 0 0 1.1em;
+  text-wrap: pretty;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 1px;
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  transition: color 0.12s ease, border-color 0.12s ease;
+}
+
+a:hover {
+  color: var(--accent-hover);
+  border-bottom-color: var(--accent-hover);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Links that shouldn't carry the underline rule. */
+a.plain,
+a.plain:hover {
+  border-bottom: none;
+}
+
+strong {
+  font-weight: 600;
+}
+
+/* ---------------------------------------------------------------
+   Section pattern — rules and typography, not cards.
+   --------------------------------------------------------------- */
+
+.section {
+  margin-top: var(--space-section);
+}
+
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 1.25rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.meta {
+  color: var(--text-muted);
+}
+
+.lead {
+  font-size: clamp(1.05rem, 1rem + 0.3vw, 1.2rem);
+  line-height: 1.6;
+}
+
+/* A quiet forward link: "→ Research" */
+.more {
+  display: inline-block;
+  font-size: 0.925rem;
+  margin-top: 0.85rem;
+}
+
+/* Accessibility: skip link */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--bg);
+  color: var(--text);
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--rule);
+  z-index: 100;
+}
+
+.skip-link:focus {
+  left: 0.5rem;
+  top: 0.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

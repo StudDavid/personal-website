@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ResearchSection from '../components/ResearchSection.astro';
+import { current, previous } from '../data/research';
+---
+
+<BaseLayout
+  title="Research"
+  description="Research of David Theidel: quantum optics with Rydberg atoms, and previously ultrafast quantum optics and high-harmonic generation."
+>
+  <header class="page-head">
+    <h1>Research</h1>
+    <p class="lead">
+      My work concerns the quantum optical properties of light produced by
+      systems driven far outside the linear regime — first in strong-field and
+      ultrafast settings, and now in strongly interacting atomic ensembles.
+    </p>
+  </header>
+
+  <section class="section">
+    <h2 class="section-label">Current</h2>
+    {current.map((area, i) => <ResearchSection area={area} index={i + 1} full />)}
+  </section>
+
+  <section class="section">
+    <h2 class="section-label">Previous</h2>
+    {previous.map((area, i) => (
+      <ResearchSection area={area} index={current.length + i + 1} full />
+    ))}
+  </section>
+</BaseLayout>
+
+<style>
+  .page-head {
+    padding-top: 3.5rem;
+  }
+
+  .lead {
+    margin-top: 1.25rem;
+    max-width: 62ch;
+    color: var(--text-muted);
+  }
+</style>

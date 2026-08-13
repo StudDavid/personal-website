@@ -1,0 +1,55 @@
+---
+import type { Publication } from '../data/publications';
+
+interface Props {
+  pub: Publication;
+}
+
+const { pub } = Astro.props;
+---
+
+<article class="pub">
+  <p class="authors">{pub.authors}</p>
+  <h3 class="title">{pub.title}</h3>
+  <p class="venue">{pub.venue}</p>
+  {(pub.doi || pub.arxiv) && (
+    <p class="links">
+      {pub.doi && <a href={pub.doi} rel="noopener">paper</a>}
+      {pub.arxiv && <a href={pub.arxiv} rel="noopener">arXiv</a>}
+    </p>
+  )}
+</article>
+
+<style>
+  .pub {
+    margin-bottom: 2rem;
+  }
+
+  .pub:last-child {
+    margin-bottom: 0;
+  }
+
+  .authors {
+    margin: 0 0 0.15rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  .title {
+    margin: 0 0 0.15rem;
+    font-weight: 600;
+  }
+
+  .venue {
+    margin: 0;
+    font-size: 0.925rem;
+    color: var(--text-muted);
+  }
+
+  .links {
+    display: flex;
+    gap: 1rem;
+    margin: 0.45rem 0 0;
+    font-size: 0.85rem;
+  }
+</style>

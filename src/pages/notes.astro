@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<!--
+  Not linked from the main navigation on purpose: the page exists so the
+  infrastructure is in place, but the site shouldn't advertise a knowledge
+  base that doesn't have content yet. Add it to `nav` in src/data/site.ts
+  once there is public material.
+-->
+<BaseLayout
+  title="Notes"
+  description="Technical notes and explanatory material by David Theidel."
+>
+  <header class="page-head">
+    <h1>Notes</h1>
+    <p class="meta">Coming soon.</p>
+    <p>
+      I occasionally publish technical notes and explanatory material here.
+    </p>
+  </header>
+</BaseLayout>
+
+<style>
+  .page-head {
+    padding-top: 3.5rem;
+    max-width: 62ch;
+  }
+
+  .meta {
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+</style>

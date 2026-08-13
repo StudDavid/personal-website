@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ResearchSection from '../components/ResearchSection.astro';
+import Publication from '../components/Publication.astro';
+import { site, contact } from '../data/site';
+import { current, previous } from '../data/research';
+import { selected, byYear } from '../data/publications';
+import { url } from '../lib/url';
+
+const selectedByYear = byYear(selected);
+---
+
+<BaseLayout>
+  <header class="identity">
+    <h1>{site.name}</h1>
+    <p class="role">{site.role}</p>
+    <p class="affiliation">{site.affiliation}</p>
+    <p class="lead statement">
+      I study quantum optical phenomena in strongly interacting and strongly
+      driven quantum systems, with a focus on Rydberg atoms, collective
+      light–matter interactions, and non-classical light.
+    </p>
+  </header>
+
+  <section class="section">
+    <h2 class="section-label">Research</h2>
+    {[...current, ...previous].map((area) => <ResearchSection area={area} />)}
+    <a class="more" href={url('/research/')}>→ Research</a>
+  </section>
+
+  <section class="section">
+    <h2 class="section-label">Selected publications</h2>
+    {selectedByYear.length === 0 ? (
+      <p class="meta">
+        {/* Shown until publications.ts is filled in. */}
+        Publication list in preparation.
+      </p>
+    ) : (
+      selectedByYear.map((group) => (
+        <div class="year-group">
+          <p class="year">{group.year}</p>
+          {group.items.map((pub) => <Publication pub={pub} />)}
+        </div>
+      ))
+    )}
+    <a class="more" href={url('/publications/')}>→ All publications</a>
+  </section>
+
+  <section class="section">
+    <h2 class="section-label">Currently</h2>
+    <p>
+      Postdoctoral researcher at the Collège de France in Paris, working on
+      quantum optics with Rydberg atoms.
+    </p>
+    <a class="more" href={url('/cv/')}>→ CV</a>
+  </section>
+
+  <section class="section">
+    <h2 class="section-label">Contact</h2>
+    <p class="contact-links">
+      <a href={`mailto:${contact.email}`}>Email</a>
+      <span aria-hidden="true">·</span>
+      <a href={contact.scholar} rel="me noopener">Google Scholar</a>
+      <span aria-hidden="true">·</span>
+      <a href={contact.orcid} rel="me noopener">ORCID</a>
+      <span aria-hidden="true">·</span>
+      <a href={contact.github} rel="me noopener">GitHub</a>
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  .identity {
+    padding-top: 4rem;
+  }
+
+  .role {
+    margin: 1rem 0 0;
+    font-size: 1.05rem;
+  }
+
+  .affiliation {
+    margin: 0.2rem 0 0;
+    color: var(--text-muted);
+  }
+
+  .statement {
+    margin-top: 1.75rem;
+    max-width: 62ch;
+  }
+
+  .year-group {
+    margin-bottom: 2rem;
+  }
+
+  .year {
+    margin: 0 0 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+</style>

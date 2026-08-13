@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site, contact } from '../data/site';
+---
+
+<BaseLayout
+  title="About"
+  description={site.description}
+>
+  <header class="page-head">
+    <h1>About</h1>
+  </header>
+
+  <div class="prose">
+    <p>
+      David Theidel is a physicist working in quantum optics. He is currently a
+      postdoctoral researcher at the Collège de France in Paris.
+    </p>
+    <p>
+      {/* TODO: confirm institution, group and year before launch. */}
+      He completed his PhD at the Institut Polytechnique de Paris, where he
+      worked on the quantum optical description of strong-field and
+      high-harmonic processes.
+    </p>
+    <p>
+      His research interests include collective light–matter interaction in
+      strongly interacting atomic ensembles, non-classical states of light,
+      photon statistics and higher-order correlations, and the use of these
+      effects for quantum information.
+    </p>
+  </div>
+
+  <section class="section">
+    <h2 class="section-label">Contact</h2>
+    <ul class="contact">
+      <li><a href={`mailto:${contact.email}`}>{contact.email}</a></li>
+      <li><a href={contact.scholar} rel="me noopener">Google Scholar</a></li>
+      <li><a href={contact.orcid} rel="me noopener">ORCID</a></li>
+      <li><a href={contact.github} rel="me noopener">GitHub</a></li>
+    </ul>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-head {
+    padding-top: 3.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .prose {
+    max-width: 62ch;
+  }
+
+  .contact {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+</style>

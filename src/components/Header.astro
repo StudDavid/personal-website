@@ -1,0 +1,154 @@
+---
+import { site, nav } from '../data/site';
+import { url } from '../lib/url';
+
+// Mark the current section so the nav shows where you are.
+const path = Astro.url.pathname.replace(import.meta.env.BASE_URL.replace(/\/$/, ''), '');
+const isCurrent = (href: string) => path.startsWith(href);
+---
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand plain" href={url('/')}>{site.name}</a>
+
+    <!-- Desktop nav -->
+    <nav class="nav-desktop" aria-label="Primary">
+      {nav.map((item) => (
+        <a
+          class="nav-link plain"
+          href={url(item.href)}
+          aria-current={isCurrent(item.href) ? 'page' : undefined}
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+
+    <!-- Mobile nav: <details> keeps it JS-free and animation-free -->
+    <details class="nav-mobile">
+      <summary aria-label="Menu">
+        <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true">
+          <path d="M3 6h16M3 11h16M3 16h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+        </svg>
+      </summary>
+      <nav aria-label="Primary, mobile">
+        {nav.map((item) => (
+          <a
+            class="plain"
+            href={url(item.href)}
+            aria-current={isCurrent(item.href) ? 'page' : undefined}
+          >
+            {item.label}
+          </a>
+        ))}
+      </nav>
+    </details>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    border-bottom: 1px solid var(--rule);
+    background: var(--bg);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding-block: 1.15rem;
+  }
+
+  .brand {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 1.0625rem;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    white-space: nowrap;
+  }
+
+  .brand:hover {
+    color: var(--accent);
+  }
+
+  .nav-desktop {
+    display: flex;
+    gap: 1.6rem;
+  }
+
+  .nav-link {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    padding-bottom: 2px;
+    border-bottom: 1px solid transparent;
+  }
+
+  .nav-link:hover {
+    color: var(--text);
+  }
+
+  .nav-link[aria-current='page'] {
+    color: var(--text);
+    border-bottom-color: var(--accent);
+  }
+
+  /* --- mobile --- */
+
+  .nav-mobile {
+    display: none;
+    position: relative;
+  }
+
+  .nav-mobile summary {
+    list-style: none;
+    cursor: pointer;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    padding: 0.25rem;
+  }
+
+  .nav-mobile summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .nav-mobile summary:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .nav-mobile nav {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 0.9rem);
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    min-width: 11rem;
+    padding: 1.1rem 1.25rem;
+    background: var(--bg);
+    border: 1px solid var(--rule);
+  }
+
+  .nav-mobile nav a {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+  }
+
+  .nav-mobile nav a[aria-current='page'] {
+    color: var(--text);
+  }
+
+  @media (max-width: 34rem) {
+    .nav-desktop {
+      display: none;
+    }
+    .nav-mobile {
+      display: block;
+    }
+  }
+</style>

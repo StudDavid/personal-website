@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Publication from '../components/Publication.astro';
+import { publications, byYear } from '../data/publications';
+import { contact } from '../data/site';
+
+const groups = byYear(publications);
+---
+
+<BaseLayout
+  title="Publications"
+  description="Publications by David Theidel in quantum optics, Rydberg physics and ultrafast science."
+>
+  <header class="page-head">
+    <h1>Publications</h1>
+  </header>
+
+  {groups.length === 0 ? (
+    <p class="meta empty">
+      {/* Replace by filling in src/data/publications.ts */}
+      The publication list is being compiled. In the meantime, see
+      <a href={contact.scholar} rel="noopener">Google Scholar</a>.
+    </p>
+  ) : (
+    groups.map((group) => (
+      <section class="year-group">
+        <h2 class="year">{group.year}</h2>
+        {group.items.map((pub) => <Publication pub={pub} />)}
+      </section>
+    ))
+  )}
+</BaseLayout>
+
+<style>
+  .page-head {
+    padding-top: 3.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .empty {
+    margin-top: 2rem;
+  }
+
+  .year-group {
+    margin-bottom: 3rem;
+  }
+
+  .year {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+    margin: 0 0 1rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--rule);
+  }
+</style>

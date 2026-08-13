@@ -1,0 +1,52 @@
+---
+import type { Area } from '../data/research';
+
+interface Props {
+  area: Area;
+  /** Ordinal shown on the research page, e.g. "01". Omit on the homepage. */
+  index?: number;
+  /** Render the full body instead of the one-line summary. */
+  full?: boolean;
+}
+
+const { area, index, full = false } = Astro.props;
+---
+
+<section class="area" id={area.id}>
+  {index !== undefined && <p class="ordinal">{String(index).padStart(2, '0')}</p>}
+  <h3 class="title">{area.title}</h3>
+  {full ? area.body.map((p) => <p>{p}</p>) : <p class="summary">{area.summary}</p>}
+  <slot />
+</section>
+
+<style>
+  .area {
+    margin-bottom: var(--space-block);
+    padding-bottom: var(--space-block);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .area:last-of-type {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+
+  .ordinal {
+    margin: 0 0 0.35rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .title {
+    margin: 0 0 0.6rem;
+  }
+
+  .summary {
+    color: var(--text-muted);
+    margin-bottom: 0;
+  }
+</style>

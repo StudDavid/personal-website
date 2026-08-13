@@ -1,0 +1,47 @@
+---
+import { site, contact } from '../data/site';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="line">{site.name} · {site.location}</p>
+    <p class="line links">
+      <a href={`mailto:${contact.email}`}>Email</a>
+      <span aria-hidden="true">·</span>
+      <a href={contact.scholar} rel="me noopener">Google Scholar</a>
+      <span aria-hidden="true">·</span>
+      <a href={contact.orcid} rel="me noopener">ORCID</a>
+      <span aria-hidden="true">·</span>
+      <a href={contact.github} rel="me noopener">GitHub</a>
+    </p>
+    <p class="line copyright">© {year} {site.name}</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: 6rem;
+    border-top: 1px solid var(--rule);
+    padding-block: 2rem 3rem;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+  }
+
+  .line {
+    margin: 0 0 0.5rem;
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .copyright {
+    margin-top: 1rem;
+    margin-bottom: 0;
+    font-size: 0.8125rem;
+  }
+</style>
