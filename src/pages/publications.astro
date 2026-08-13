@@ -14,8 +14,9 @@ const groups = byYear(publications);
   <header class="page-head">
     <h1>Publications</h1>
     <p class="meta also">
-      Also on <a href={contact.scholar} rel="noopener">Google Scholar</a> and
-      <a href={contact.orcid} rel="noopener">ORCID</a>.
+      {/* One line on purpose: a newline between an element and text is
+          trimmed, which swallows the space. */}
+      Also on <a href={contact.scholar} rel="noopener">Google Scholar</a> and <a href={contact.orcid} rel="noopener">ORCID</a>.
     </p>
   </header>
 
@@ -52,7 +53,7 @@ const groups = byYear(publications);
   .year {
     font-family: var(--font-sans);
     font-size: 0.7rem;
-    font-weight: 650;
+    font-weight: 600;
     letter-spacing: 0.15em;
     color: var(--text-muted);
     margin: 0 0 1.15rem;
