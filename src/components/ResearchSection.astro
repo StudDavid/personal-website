@@ -24,6 +24,11 @@ const { area, index, full = false } = Astro.props;
     ) : (
       <p class="pending">Full description in preparation.</p>
     ))}
+  {full && area.link && (
+    <p class="link">
+      <a class="more" href={area.link.href} rel="noopener">{area.link.label} →</a>
+    </p>
+  )}
   <slot />
 </section>
 
@@ -61,6 +66,14 @@ const { area, index, full = false } = Astro.props;
   .pending {
     color: var(--text-muted);
     font-style: italic;
+  }
+
+  .link {
+    margin: 0;
+  }
+
+  .link .more {
+    margin-top: 0.4rem;
   }
 
   .area :global(p:last-child) {
