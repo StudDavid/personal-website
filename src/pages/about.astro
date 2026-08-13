@@ -3,10 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { site, contact } from '../data/site';
 ---
 
-<BaseLayout
-  title="About"
-  description={site.description}
->
+<BaseLayout title="About" description={site.description}>
   <header class="page-head">
     <h1>About</h1>
   </header>
@@ -14,19 +11,22 @@ import { site, contact } from '../data/site';
   <div class="prose">
     <p>
       David Theidel is a physicist working in quantum optics. He is currently a
-      postdoctoral researcher at the Collège de France in Paris.
+      postdoctoral researcher at the Collège de France in Paris, in the Quantum
+      Photonics team of Alexei Ourjoumtsev, where he works on Rydberg-assisted
+      quantum engineering of light.
     </p>
     <p>
-      {/* TODO: confirm institution, group and year before launch. */}
-      He completed his PhD at the Institut Polytechnique de Paris, where he
-      worked on the quantum optical description of strong-field and
-      high-harmonic processes.
+      He completed his PhD at the Institut Polytechnique de Paris in 2025, at
+      the Laboratoire d’Optique Appliquée of the École polytechnique, on the
+      quantum optical properties of high-harmonic generation in semiconductors.
+      Before moving to France he studied physics at Leibniz University
+      Hannover, working at the Institute of Quantum Optics.
     </p>
     <p>
-      His research interests include collective light–matter interaction in
-      strongly interacting atomic ensembles, non-classical states of light,
-      photon statistics and higher-order correlations, and the use of these
-      effects for quantum information.
+      His research interests include non-classical states of light, photon
+      statistics and higher-order correlations, collective light–matter
+      interaction in strongly interacting atomic ensembles, and the use of
+      these effects for quantum information.
     </p>
   </div>
 
@@ -37,6 +37,8 @@ import { site, contact } from '../data/site';
       <li><a href={contact.scholar} rel="me noopener">Google Scholar</a></li>
       <li><a href={contact.orcid} rel="me noopener">ORCID</a></li>
       <li><a href={contact.github} rel="me noopener">GitHub</a></li>
+      <li><a href={contact.linkedin} rel="me noopener">LinkedIn</a></li>
+      <li><a href={contact.bluesky} rel="me noopener">Bluesky</a></li>
     </ul>
   </section>
 </BaseLayout>

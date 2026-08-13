@@ -1,5 +1,5 @@
 // Research areas, split into current and previous so the site reflects the
-// actual career trajectory rather than presenting everything as active work.
+// actual trajectory rather than presenting everything as active work.
 
 export type Area = {
   id: string;
@@ -13,31 +13,28 @@ export type Area = {
 export const current: Area[] = [
   {
     id: 'rydberg',
-    title: 'Quantum optics with Rydberg atoms',
+    title: 'Rydberg-assisted quantum engineering of light',
     summary:
-      'Collective light–matter interaction in strongly interacting atomic ensembles, and the non-classical optical response it produces.',
+      'Using strongly interacting Rydberg atoms as a non-linear medium to shape the quantum state of an optical field.',
     body: [
-      // TODO: revise this so it describes your actual current work at the
-      // Collège de France, and only makes claims you want publicly attached
-      // to your name.
-      'Atoms excited to Rydberg states interact strongly enough that a single excitation can block its neighbours across an entire ensemble. The ensemble then responds to light as one collective object — a superatom — rather than as a collection of independent scatterers.',
-      'My current work uses this collective response as a resource for quantum optics: mapping photons onto collective atomic states, reading out the resulting phase-sensitive optical response, and studying how strong interactions turn a linear medium into a non-linear one at the single-photon level.',
-      'This connects directly to quantum information: the same blockade that produces the collective response is the mechanism behind Rydberg-mediated quantum gates.',
+      'Atoms excited to Rydberg states interact strongly enough that a single excitation can suppress further excitation across an entire ensemble. The ensemble then responds to light collectively, as one object, rather than as a collection of independent scatterers.',
+      'That collective response makes an atomic medium optically non-linear at the level of individual photons — a regime ordinary materials do not reach. It is a resource for engineering the quantum state of light directly: preparing non-classical states, mediating effective interactions between photons, and building the photon–photon gates that quantum information processing with light requires.',
+      'I joined this work as a postdoctoral researcher in the Quantum Photonics team of Alexei Ourjoumtsev at the Collège de France in March 2026.',
     ],
   },
 ];
 
 export const previous: Area[] = [
   {
-    id: 'ultrafast',
-    title: 'Ultrafast quantum optics',
+    id: 'strong-field',
+    title: 'Strong-field quantum optics',
     summary:
-      'Photon statistics and higher-order correlations of light produced by strong-field and high-harmonic processes.',
+      'Photon statistics and non-classical correlations of the light emitted in high-harmonic generation from semiconductors.',
     body: [
-      // TODO: revise against your actual PhD work and publications.
-      'My doctoral research concerned the quantum optical description of strong-field processes — in particular high-harmonic generation, which is normally treated as an entirely classical emission problem.',
-      'The question is what the light itself carries: whether the harmonic field and the driving field retain non-classical photon statistics, what higher-order correlations survive the process, and how the resulting states are structured across modes.',
-      'Solid-state high-harmonic generation makes this concrete, since the emission is governed by the band structure of the material rather than by a single-atom response.',
+      'High-harmonic generation is normally described as a classical emission process: a strong laser field drives a material, and the material radiates at multiples of the driving frequency. My doctoral research asked a different question — what quantum state the emitted light is actually in.',
+      'Working with semiconductor high-harmonic sources, we measured the photon statistics of individual harmonic orders and the correlations between them. The measurements showed non-classical photon statistics, squeezing, and non-classical correlations between harmonic modes: evidence that the process is quantum optical in a way the classical description does not capture.',
+      'Later work extended this to conditional state preparation, using heralded measurements between harmonic orders and witness operators to certify quantum non-Gaussianity. Taken together, the results establish semiconductor high-harmonic generation as a broadband source of non-classical light, rather than only as a route to attosecond pulses.',
+      'This work was carried out at the Laboratoire d’Optique Appliquée, École polytechnique, in the group of Hamed Merdji.',
     ],
   },
 ];

@@ -29,16 +29,28 @@ Design tokens (colour, type, measure, spacing) are at the top of
 
 ## Before launch
 
-Search the repo for `TODO` — every placeholder is marked. In particular:
+Content is real — sourced from ORCID (0000-0001-8486-8509), Google Scholar,
+Crossref, the previous WordPress site and your LaTeX CV. Remaining items:
 
-- `src/data/site.ts` — email, Google Scholar, ORCID
-- `src/data/publications.ts` — the list is deliberately empty; no publications
-  were invented. Until it is filled in, the publication sections show a
-  "being compiled" message.
-- `src/data/cv.ts` — dates, institutions, thesis title
-- `src/data/research.ts` and `src/pages/about.astro` — research prose, which
-  should be checked so it only claims what you want publicly attached to you
-- `src/pages/cv.astro` — set `hasPdf = true` after adding `public/files/cv.pdf`
+- **Contact email** is set to `theidel.david@gmail.com` (from the CV). Switch
+  it to a Collège de France address if you'd rather use an institutional one.
+- **CV PDF** — drop it at `public/files/cv.pdf` and set `hasPdf = true` in
+  `src/pages/cv.astro`.
+- **Check the research prose** in `src/data/research.ts` and `about.astro`. The
+  strong-field section is written from your papers; the Rydberg section is
+  written from a one-line CV entry and is the part most likely to need
+  correcting.
+
+Three entries in the LaTeX CV are out of date and were corrected against the
+published record:
+
+- `Gombkoto2025Intermodel` is no longer "submitted" — Phys. Rev. Research 8,
+  033154 (10 August 2026).
+- `mapa2026` is no longer "in review" — Appl. Phys. Lett. 128, 191101, and the
+  published title differs from the one in the .bib.
+- `theidel2026photonantibunchingquantumnongaussianity` — arXiv v4 is titled
+  "Sub-Poissonian Statistics and Quantum Non-Gaussianity…" and lists Viviane
+  Cotte as an author; the .bib has the older title and omits her.
 
 ## Deployment
 
