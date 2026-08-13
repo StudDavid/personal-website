@@ -17,7 +17,7 @@ const { area, index, full = false } = Astro.props;
     <p class="ordinal tnum">{String(index).padStart(2, '0')}</p>
   )}
   <h3 class="title">{area.title}</h3>
-  {area.summary && <p class="summary">{area.summary}</p>}
+  {!full && area.summary && <p class="summary">{area.summary}</p>}
   {full &&
     (area.body.length > 0 ? (
       area.body.map((paragraph) => <p>{paragraph}</p>)

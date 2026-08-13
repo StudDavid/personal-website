@@ -70,7 +70,7 @@ export const cv: Section[] = [
         what: 'PhD Researcher',
         where: 'Laboratoire d’Optique Appliquée, École polytechnique',
         detail:
-          'Photon statistics of semiconductor high-harmonic generation; quantum metrology of non-classical light from broadband sources. Co-supervised two M2 research projects.',
+          'Photon statistics of semiconductor high-harmonic generation, and quantum metrology of non-classical light from broadband sources. Co-supervised two M2 research projects.',
       },
       {
         when: '2022',
@@ -199,7 +199,7 @@ export const cv: Section[] = [
         what: 'Awards at Jugend forscht',
         where: 'German national science competition for school students',
         detail:
-          'First prize at federal level and prize of the Wilhelm and Else Heraeus Foundation at national level (2014); first prize at regional level and third prize with a special prize of the Deutsches Museum München at federal level (2015).',
+          'First prize at federal level and prize of the Wilhelm and Else Heraeus Foundation at national level (2014). First prize at regional level and third prize with a special prize of the Deutsches Museum München at federal level (2015).',
       },
     ],
   },
@@ -211,7 +211,7 @@ export const cv: Section[] = [
         what: 'Co-organizer, Quantum PhDay',
         where: 'ENS Paris-Saclay and Institut d’Optique Graduate School',
         detail:
-          'Doctoral meeting of the Quantum-Saclay network; the 2025 edition drew 100 participants, including QuTech (TU Delft), in cooperation with the Embassy of the Netherlands.',
+          'Doctoral meeting of the Quantum-Saclay network. The 2025 edition drew 100 participants, including QuTech (TU Delft), in cooperation with the Embassy of the Netherlands.',
       },
       {
         when: '2024, 2025',

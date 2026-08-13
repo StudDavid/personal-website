@@ -210,6 +210,10 @@ strong {
   padding-top: clamp(2.5rem, 2rem + 1.8vw, 3.5rem);
 }
 
+.page-head .lead {
+  margin-top: 1.4rem;
+}
+
 /* A heading with no intro paragraph shouldn't leave a canyon above the
    first section rule. */
 .page-head + .section {
