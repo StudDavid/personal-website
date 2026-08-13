@@ -1,13 +1,11 @@
 ---
+// Not linked from the main navigation on purpose: the page exists so the
+// infrastructure is in place, but the site shouldn't advertise a knowledge
+// base that doesn't have content yet. Add it to `nav` in src/data/site.ts
+// once there is public material.
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<!--
-  Not linked from the main navigation on purpose: the page exists so the
-  infrastructure is in place, but the site shouldn't advertise a knowledge
-  base that doesn't have content yet. Add it to `nav` in src/data/site.ts
-  once there is public material.
--->
 <BaseLayout
   title="Notes"
   description="Technical notes and explanatory material by David Theidel."

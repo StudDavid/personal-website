@@ -15,7 +15,7 @@ const { area, index, full = false } = Astro.props;
 <section class="area" id={area.id}>
   {index !== undefined && <p class="ordinal">{String(index).padStart(2, '0')}</p>}
   <h3 class="title">{area.title}</h3>
-  <p class="summary">{area.summary}</p>
+  {area.summary && <p class="summary">{area.summary}</p>}
   {full &&
     (area.body.length > 0 ? (
       area.body.map((p) => <p>{p}</p>)
