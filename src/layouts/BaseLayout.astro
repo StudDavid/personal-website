@@ -44,6 +44,13 @@ const ogImage = new URL('/images/og.png', 'https://theidel.com').href;
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    <link
+      rel="preload"
+      href={url('/fonts/source-sans-3-latin.woff2')}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <link rel="icon" type="image/svg+xml" href={url('/favicon.svg')} />
     <link rel="sitemap" href={url('/sitemap-index.xml')} />
     <meta name="color-scheme" content="light dark" />
@@ -86,10 +93,11 @@ const ogImage = new URL('/images/og.png', 'https://theidel.com').href;
       document.querySelectorAll('span.mail[data-mail]').forEach((el) => {
         const encoded = (el as HTMLElement).dataset.mail;
         if (!encoded) return;
-        const address = atob(encoded);
         const link = document.createElement('a');
-        link.href = `mailto:${address}`;
-        link.textContent = address;
+        link.href = `mailto:${atob(encoded)}`;
+        // Keep the spelled-out "at" on screen. Only the href carries the
+        // real address, so there is no plain address in the text either.
+        link.textContent = el.textContent;
         el.replaceWith(link);
       });
     </script>
