@@ -2,7 +2,7 @@
 
 export const site = {
   name: 'David Theidel',
-  role: 'Postdoctoral Researcher in Quantum Optics',
+  role: 'Researcher in Quantum Optics',
   affiliation: 'Collège de France · Paris',
   location: 'Paris',
   description:
