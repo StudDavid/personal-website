@@ -69,10 +69,9 @@ published record:
 Pushing to `main` triggers `.github/workflows/deploy.yml`, which builds and
 publishes to GitHub Pages.
 
-**While testing** at `https://studdavid.github.io/personal-website/`, set a
-repository variable `BASE_PATH` to `/personal-website` (Settings → Secrets and
-variables → Actions → Variables). Without it, CSS and links resolve to the
-domain root and the test site renders unstyled.
+The site serves from `theidel.com`, set by `public/CNAME`. To preview from a
+subpath again (e.g. `studdavid.github.io/personal-website/`), set a repository
+variable `BASE_PATH` to `/personal-website` and remove the CNAME file.
 
 **When switching to the custom domain:**
 
