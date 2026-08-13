@@ -37,7 +37,6 @@ export const publications: Publication[] = [
       'Sub-Poissonian statistics and quantum non-Gaussianity from high-harmonic generation',
     venue: 'Preprint',
     arxiv: 'https://arxiv.org/abs/2602.10882',
-    selected: true,
   },
   {
     year: 2025,
