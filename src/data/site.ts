@@ -4,6 +4,8 @@ export const site = {
   name: 'David Theidel',
   role: 'Researcher in Quantum Optics',
   affiliation: 'Collège de France · Paris',
+  /** Trails the name in the homepage <title>. */
+  field: 'Quantum Optics',
   location: 'Paris',
   description:
     'David Theidel is a postdoctoral researcher in quantum optics at the Collège de France in Paris, working on Rydberg-assisted quantum engineering of light.',

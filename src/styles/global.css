@@ -313,12 +313,16 @@ strong {
    =============================================================== */
 
 @media print {
-  :root {
+  :root,
+  :root[data-theme='light'],
+  :root[data-theme='dark'] {
+    color-scheme: light;
     --bg: #fff;
     --text: #000;
     --text-muted: #444;
     --rule: #ccc;
     --accent: #000;
+    --accent-hover: #000;
   }
 
   body {
@@ -342,6 +346,24 @@ strong {
 
   .section {
     margin-top: 1.5rem;
+  }
+
+  /* Sections may span pages; individual records and headings may not. */
+  .section-label,
+  .sub-label,
+  .year {
+    break-after: avoid;
+  }
+
+  .entry,
+  .pub,
+  .area {
     break-inside: avoid;
+  }
+
+  h1,
+  h2,
+  h3 {
+    break-after: avoid;
   }
 }

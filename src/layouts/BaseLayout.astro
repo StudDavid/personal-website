@@ -12,10 +12,8 @@ interface Props {
 
 const { title, description = site.description } = Astro.props;
 
-// "Research — David Theidel" on subpages, name and role on the homepage.
-const pageTitle = title
-  ? `${title} — ${site.name}`
-  : `${site.name} — ${site.role}`;
+// Name first everywhere: "David Theidel — Research", "David Theidel — Quantum Optics".
+const pageTitle = `${site.name} — ${title ?? site.field}`;
 
 // Canonical always points at the production domain, never the Pages URL.
 const canonical = new URL(Astro.url.pathname, 'https://theidel.com').href;
